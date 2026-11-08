@@ -193,3 +193,16 @@
   .jr .acard{flex-wrap:wrap}
   .jr .aacts{width:100%;justify-content:flex-end}
 }
+
+/* Login, session controls and change terminal */
+.jr.login-screen{display:flex;min-height:100vh;justify-content:center;align-items:center;padding:20px;background:radial-gradient(circle at 20% 20%,#e5f1ff,transparent 45%),#f5f7fb;color:#172c48}
+.jr .login-card{width:min(100%,420px);background:white;border:1px solid #e2e8f0;border-radius:22px;padding:38px;box-shadow:0 20px 65px #172c481a}
+.jr .login-logo{display:grid;place-items:center;width:58px;height:58px;border-radius:18px;background:#eaf3ff;color:#2474d2;font-size:26px;margin-bottom:16px}
+.jr .login-card h1{margin:0;font-size:29px}.jr .login-card p{color:#718096;margin:8px 0 26px}.jr .login-card form{display:grid;gap:10px}.jr .login-card label{font-weight:700;font-size:13px;margin-top:6px}
+.jr .login-card input{width:100%;min-width:0;padding:13px 14px;border:1px solid #d8e1ed;border-radius:10px;background:#fff;color:#172c48;font:inherit;box-sizing:border-box}
+.jr .login-card input:focus{outline:2px solid #a6caff;border-color:#2474d2}.jr .password-field{position:relative}.jr .password-field input{padding-right:48px}.jr .password-field button{position:absolute;right:5px;top:5px;border:0;background:transparent;color:#718096;padding:8px}
+.jr .login-submit{width:100%;margin-top:12px;padding:13px!important}.jr .login-card small{display:block;text-align:center;color:#8a98aa;margin-top:25px}.jr .login-error{background:#fff0f0;border:1px solid #fecaca;color:#b91c1c;border-radius:10px;padding:10px;font-size:13px}
+.jr .journal-tools{position:fixed;right:16px;bottom:16px;z-index:30;display:flex;gap:8px}.jr .journal-tools button{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;background:#172c48;color:#fff;border:1px solid #30435c;box-shadow:0 8px 25px #0002;font-weight:700;cursor:pointer}.jr .journal-tools button:hover{background:#294766}.jr .history-count{background:#ffffff30;border-radius:30px;padding:2px 7px}
+.jr .terminal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#1b2536;color:#c7d4e5;padding:12px 15px;border-radius:12px 12px 0 0;font:12px ui-monospace,monospace}.jr .terminal-head button{display:flex;gap:6px;align-items:center;background:#29394f;color:#e2e8f0;border:1px solid #43536a;border-radius:8px;padding:7px 10px;cursor:pointer}.jr .terminal-dot{display:inline-block;width:8px;height:8px;background:#4ade80;border-radius:50%;margin-right:8px}
+.jr .terminal-body{background:#101827;color:#d5e4f5;min-height:220px;max-height:55vh;overflow:auto;padding:16px;border-radius:0 0 12px 12px;font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}.jr .terminal-line{display:flex;gap:12px;align-items:baseline;padding:5px 0;border-bottom:1px solid #ffffff12;overflow-wrap:anywhere}.jr .terminal-line time{color:#91a4ba;white-space:nowrap}.jr .terminal-arrow{color:#4ade80}.jr .terminal-empty{color:#91a4ba}.jr .terminal-note{font-size:12px;color:var(--mute);margin:12px 0 0}
+@media(max-width:600px){.jr .login-card{padding:25px}.jr .journal-tools{right:10px;bottom:10px}.jr .terminal-line{display:block}.jr .terminal-line time{display:block}}

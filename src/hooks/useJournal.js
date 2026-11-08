@@ -13,7 +13,7 @@ const timeDropped = (form, g) => Boolean(form.timeStart && g.timeStart !== form.
 const STALE = "Время урока не сохранилось: перезапустите server (остановите и снова запустите npm run dev в папке server).";
 const EMPTY_ARCHIVE = { groups: [], students: [] };
 
-export default function useJournal() {
+export default function useJournal(onActivity) {
   const [s, setS] = useState({ groups: [], students: [], records: {}, archive: EMPTY_ARCHIVE, groupId: null });
   const [loading, setLoading] = useState(true);
   const [offline, setOffline] = useState(false); // первая загрузка не удалась
@@ -30,7 +30,7 @@ export default function useJournal() {
     setToasts((t) => [...t.filter((x) => x.text !== text), { id, type, text }].slice(-4));
     setTimeout(() => dismiss(id), type === "error" ? 7000 : 3800);
   }, [dismiss]);
-  const ok = (text) => notify("success", text);
+  const ok = (text) => { notify("success", text); onActivity?.(text); };
   const info = (text) => notify("info", text);
   const bad = (e, what) => notify("error", e?.offline ? `${e.message}. ${what} — не сохранено.` : `${what}: ${e?.message || "ошибка"}`);
 
@@ -80,7 +80,12 @@ export default function useJournal() {
     const k = keyOf(sid, date);
     const prev = s.records[k];
     setS((p) => ({ ...p, records: { ...p.records, [k]: { ...p.records[k], ...patch } } }));
-    api.setRecord({ studentId: sid, date, patch }).catch((e) => {
+    api.setRecord({ studentId: sid, date, patch }).then(() => {
+      const st = s.students.find((x) => x.id === sid);
+      const who = st ? fio(st) : "Ученик";
+      const details = Object.entries(patch).map(([field, val]) => field === "a" ? `посещение: ${val === "p" ? "присутствует" : val === "a" ? "отсутствует" : "сброшено"}` : `${field === "hw" ? "ДЗ" : "Классная работа"}: ${val ?? "—"}`).join(", ");
+      onActivity?.(`${who} · ${date} · ${details}`);
+    }).catch((e) => {
       revert([[k, prev]]);
       bad(e, "Отметка");
       if (!e.offline) refresh({ silent: true });
