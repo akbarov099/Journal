@@ -1,4 +1,4 @@
-const BASE = import.meta.env.VITE_API_URL || "https://api-journal.bilimnuru.com/api/";
+const BASE = import.meta.env.VITE_API_URL || "https://api-journal.bilimnuru.com/api";
 
 export const OFFLINE_MSG = "Нет связи с сервером";
 
