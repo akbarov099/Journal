@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700&family=Unbounded:wght@500;700&display=swap');
+@property --h{syntax:"<number>";inherits:true;initial-value:199}
+@property --s{syntax:"<number>";inherits:true;initial-value:1}
+@property --l{syntax:"<number>";inherits:true;initial-value:37}
+
+/* Правило цветов: на цветном фоне текст белый, на белом фоне чёрный.
+   Цвет группы (--h --s --l) красит баннер, плитки, отметки и итоги; при смене группы он плавно переезжает. */
+.jr{--bg:hsl(var(--h) calc(30% * var(--s)) 95%);--card:#fff;--ink:#0d0f13;--mute:#4a4f57;
+  --line:hsl(var(--h) calc(18% * var(--s)) 86%);--soft:hsl(var(--h) calc(70% * var(--s)) 94%);
+  display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh;background:var(--bg);color:var(--ink);color-scheme:light;
+  font:14px/1.4 Onest,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-variant-numeric:tabular-nums;
+  transition:--h .6s ease,--s .6s ease,--l .6s ease}
+.jr,.jr .modal{--acc:hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%))}
+@media(prefers-reduced-motion:reduce){.jr,.jr *{transition:none!important}}
+.jr *{box-sizing:border-box}
+.jr h1,.jr h2,.jr h3{font-family:Unbounded,Onest,system-ui,sans-serif;margin:0}
+.jr button{display:inline-flex;align-items:center;justify-content:center;gap:7px;font:inherit;color:var(--ink);cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 13px}
+.jr button svg{flex:none;width:17px;height:17px}
+.jr button:disabled{cursor:default;opacity:.45}
+.jr input:not([type=checkbox]),.jr select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 11px;min-width:0}
+.jr :focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.jr .primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+.jr .state{min-height:60vh;display:grid;place-content:center;justify-items:center;gap:14px;color:var(--mute);text-align:center}
+
+/* левая панель: белая, плитки групп цветные */
+.jr .side{background:#fff;color:var(--ink);border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:14px;position:sticky;top:0;height:100vh;overflow:auto}
+.jr .side h1{font-size:24px;font-weight:700;letter-spacing:-.03em}
+.jr .search{position:relative}
+.jr .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--mute);pointer-events:none}
+.jr .find{width:100%;padding-left:38px!important}
+.jr .hit{justify-content:space-between;text-align:left;background:#fff;color:var(--ink);border-left:5px solid hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%))}
+.jr .hit small{color:var(--mute)}
+.jr .tiles{display:flex;flex-direction:column;gap:12px}
+.jr .tile{display:flex;align-items:center;gap:12px;text-align:left;padding:10px 12px;border:0;border-radius:20px;color:#fff;
+  background:hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%));transition:transform .2s,box-shadow .2s,filter .2s}
+.jr .tile:hover{filter:brightness(.93)}
+.jr .tile.on{transform:translateX(8px);box-shadow:0 0 0 3px #fff,0 0 0 6px hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%))}
+.jr .ring{--p:0;flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#fff calc(var(--p) * 1%),hsl(0 0% 100%/.3) 0)}
+.jr .ring b{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%));color:#fff;font-size:11px;font-weight:700}
+.jr .tt{display:grid;gap:3px;min-width:0}
+.jr .tn{font:700 15px Unbounded,Onest,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jr .tw{display:flex;gap:4px}
+.jr .tw i{font-style:normal;font-size:11px;font-weight:600;padding:1px 7px;border-radius:99px;background:hsl(0 0% 100%/.24)}
+.jr .tm{font-size:12px;opacity:.92}
+.jr .side .primary{background:transparent;border:2px dashed hsla(0,0%,0%,.32);color:#000;padding:11px}
+
+/* баннер группы: цветной фон, белый текст */
+.jr main{min-width:0;padding:0 clamp(12px,3vw,32px) 28px}
+.jr .banner{margin:0 calc(-1 * clamp(12px,3vw,32px));padding:30px clamp(12px,3vw,32px) 72px;background:var(--acc);color:#fff;display:flex;flex-wrap:wrap;gap:16px 20px;align-items:flex-end}
+.jr .banner>div:first-child{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.jr .banner h2{font-size:clamp(28px,5vw,48px);line-height:1;letter-spacing:-.03em;font-weight:700;overflow-wrap:anywhere}
+.jr .chips{display:flex;gap:6px}
+.jr .chips span{padding:3px 12px;border-radius:99px;background:hsl(0 0% 100%/.22);font-weight:600;font-size:12px}
+.jr .banner__settings{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:30px}
+.jr .banner button{background:hsl(0 0% 100%/.2);border:0;color:#fff}
+.jr .banner .primary{background:#fff;color:var(--ink)}
+.jr .banner .toggle.on{background:#fff;color:var(--ink)}
+.jr .banner .ghost{background:transparent;box-shadow:inset 0 0 0 1px hsl(0 0% 100%/.6)}
+.jr .banner :focus-visible{outline-color:#fff}
+.jr .month{display:flex;align-items:center;gap:4px;background:hsl(0 0% 0%/.2);border-radius:99px;padding:4px}
+.jr .month button{border-radius:50%;width:34px;height:34px;padding:0;background:transparent}
+.jr .month button svg{width:20px;height:20px}
+.jr .month strong{min-width:130px;text-align:center}
+
+/* таблица: белый фон, чёрный текст */
+.jr .wrap{position:relative;margin-top:-46px;overflow:auto;max-height:68vh;background:#fff;border-radius:20px;box-shadow:0 22px 44px -22px hsl(var(--h) calc(60% * var(--s)) 18%/.5)}
+.jr table{border-collapse:separate;border-spacing:0;min-width:100%}
+.jr th,.jr td{border-bottom:1px solid var(--line);padding:0;text-align:center;white-space:nowrap}
+.jr thead th{position:sticky;top:0;z-index:2;background:#fff;height:64px;padding:6px 8px;font-weight:700}
+.jr thead tr:nth-child(2) th{top:64px;height:24px;padding:0;font-size:11px;font-weight:600;color:var(--mute)}
+.jr th.lesson,.jr td.att{border-left:2px solid var(--line)}
+.jr .dt{display:grid;justify-items:center;line-height:1}
+.jr .dt b{font:700 22px Unbounded,Onest,sans-serif;color:var(--ink)}
+.jr .dt em{font-style:normal;font-size:11px;font-weight:600;color:var(--mute);margin-top:2px}
+.jr .all{margin-top:5px;padding:2px 10px;font-size:11px;border-radius:99px;color:var(--ink)}
+.jr .all svg{width:13px;height:13px}
+.jr .sticky{position:sticky;left:0;z-index:3;background:#fff;text-align:left}
+.jr thead .sticky{z-index:4}
+.jr td.name{padding:8px 76px 8px 12px;min-width:270px}
+.jr .av{width:36px;height:36px;border-radius:50%;display:inline-grid;place-items:center;margin-right:10px;vertical-align:middle;background:var(--soft);color:var(--ink);font-size:12px;font-weight:700}
+.jr .who{display:inline-block;vertical-align:middle;line-height:1.25}
+.jr .fio{font-weight:600}
+.jr .who small{display:block;color:var(--mute)}
+.jr .acts{position:absolute;right:4px;top:50%;transform:translateY(-50%);display:flex}
+.jr .acts button{border:0;background:none;color:var(--mute);padding:6px}
+.jr .acts button:hover{color:var(--ink)}
+.jr td a{color:var(--ink);padding:0 12px;font-weight:600;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.jr td.att{width:42px;min-width:42px;padding:4px 3px}
+.jr td.att button{width:34px;height:34px;padding:0;border-radius:11px;border:2px dashed var(--line);background:transparent;color:var(--ink)}
+.jr td.att button svg{width:18px;height:18px;stroke-width:3}
+.jr td.att.p button{background:var(--acc);border:2px solid var(--acc);color:#fff}
+.jr td.att.a button{border:2px solid var(--ink);color:var(--ink);background:repeating-linear-gradient(135deg,transparent 0 4px,var(--line) 4px 6px)}
+.jr td input[type=number]{width:34px;height:34px;margin:4px 3px;padding:0;border-radius:11px;border:2px solid transparent;background:hsl(var(--h) calc(30% * var(--s)) 50%/.09);text-align:center;font-weight:700;-moz-appearance:textfield}
+.jr td input[type=number].top{background:var(--acc);color:#fff}
+.jr td input[type=number]:not(:disabled):hover{border-color:var(--acc)}
+.jr td input::-webkit-outer-spin-button,.jr td input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.jr td.pre{background:repeating-linear-gradient(135deg,transparent 0 5px,var(--line) 5px 6px)}
+.jr td.pre input{background:transparent}
+.jr td.sum{padding:0 14px;min-width:78px;font-weight:600}
+.jr td.sum b{display:block}
+.jr td.sum .bar{display:block;height:4px;border-radius:9px;margin-top:5px;background:var(--line);position:relative;overflow:hidden}
+.jr td.sum .bar::after{content:"";position:absolute;inset:0 auto 0 0;width:calc(var(--p) * 1%);background:var(--acc)}
+.jr td.sum small{color:var(--mute);font-weight:400}
+.jr td.sum.all{font-size:16px;font-weight:700}
+.jr tfoot td{position:sticky;bottom:0;z-index:2;border:0;padding:13px 14px;font-weight:700;background:var(--acc);color:#fff}
+.jr tfoot td.sticky{z-index:3;left:0}
+.jr .empty{padding:36px;color:var(--mute);text-align:center}
+.jr .legend{color:var(--mute);margin:14px 4px 0}
+
+/* модальные окна */
+.jr .modal{border:0;border-radius:22px;padding:0;background:#fff;color:var(--ink);width:min(540px,calc(100vw - 24px));box-shadow:0 24px 70px rgba(0,0,0,.35)}
+.jr .modal::backdrop{background:rgba(10,14,20,.55)}
+.jr .mbody{padding:22px;display:grid;gap:18px}
+.jr .mhead{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.jr .mhead h3{font-size:18px;font-weight:700;color:var(--ink)}
+.jr .x{border:0;background:none;padding:6px}
+.jr .x svg{width:22px;height:22px}
+.jr .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.jr .fld{display:grid;gap:4px}
+.jr .fld span{font-size:12px;font-weight:600;color:var(--mute)}
+.jr .fld>input{width:100%}
+.jr .days{display:flex;flex-wrap:wrap;gap:8px}
+.jr .day{position:relative;display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:99px;border:2px solid var(--line);background:#fff;color:var(--ink);font-weight:600;cursor:pointer}
+.jr .day input{position:absolute;opacity:0;pointer-events:none}
+.jr .day svg{width:15px;height:15px;stroke-width:3}
+.jr .day.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.jr .day:focus-within{outline:2px solid var(--acc);outline-offset:2px}
+.jr .swatches{display:flex;flex-wrap:wrap;gap:10px;padding-top:2px}
+.jr .sw{width:42px;height:42px;padding:0;border-radius:50%;border:3px solid #fff;color:#fff;background:hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%));box-shadow:0 0 0 1px var(--line)}
+.jr .sw.on{box-shadow:0 0 0 3px hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%))}
+.jr .sw svg{width:20px;height:20px;stroke-width:3}
+.jr .mfoot{display:flex;justify-content:flex-end;gap:8px}
+
+/* уведомления (popover в top layer — видны и поверх модальных окон) */
+.jr .toasts:popover-open{display:flex;flex-direction:column;gap:8px;position:fixed;inset:auto 16px 16px auto;margin:0;padding:0;border:0;background:none;overflow:visible;width:min(400px,calc(100vw - 32px));color:inherit}
+.jr .toast{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:12px;background:var(--ink);color:#fff;font-weight:600;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.3);border-left:5px solid #4ade80;animation:toast-in .25s ease}
+.jr .toast svg{flex:none;width:19px;height:19px;margin-top:1px}
+.jr .toast.success{border-left-color:#4ade80}
+.jr .toast.success svg{color:#4ade80}
+.jr .toast.error{border-left-color:#f87171}
+.jr .toast.error svg{color:#f87171}
+.jr .toast.info{border-left-color:#60a5fa}
+.jr .toast.info svg{color:#60a5fa}
+@keyframes toast-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* красные кнопки */
+.jr .danger{background:#c62828;border-color:#c62828;color:#fff;font-weight:700}
+.jr button.icon-danger{color:#c62828;border-color:hsl(0 60% 85%)}
+
+/* нет связи с сервером */
+.jr .offline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 calc(-1 * clamp(12px,3vw,32px));padding:10px clamp(12px,3vw,32px);background:#c62828;color:#fff;font-weight:600}
+.jr .offline svg{width:18px;height:18px}
+.jr .offline button{background:#fff;color:#c62828;border:0;padding:4px 12px;font-weight:700}
+
+
+/* время урока */
+.jr .chips span.time{display:inline-flex;align-items:center;gap:5px;background:#fff;color:var(--ink)}
+.jr .chips span.time svg{width:14px;height:14px}
+.jr .fld.wide{grid-column:1/-1}
+.jr .times{display:flex;align-items:center;gap:10px}
+.jr .times input{flex:0 1 170px}
+.jr .fld small.err{color:#c62828;font-weight:600;font-size:12px}
+
+/* архив */
+.jr .archive-btn{justify-content:flex-start;margin-top:auto}
+.jr .badge{margin-left:auto;min-width:22px;padding:1px 7px;border-radius:99px;background:var(--acc);color:#fff;font-size:12px;font-weight:700;text-align:center}
+.jr .modal.wide{width:min(720px,calc(100vw - 24px))}
+.jr .arch-top{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+.jr .tabs{display:flex;gap:6px}
+.jr .tabs button{border-radius:99px}
+.jr .tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+.jr .arch-list{display:grid;gap:10px;max-height:min(55vh,520px);overflow:auto;padding:2px}
+.jr .acard{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.jr .adot{flex:none;width:14px;height:44px;border-radius:99px;background:hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%))}
+.jr .acard .av{margin:0;flex:none}
+.jr .ainfo{display:grid;gap:2px;min-width:0;flex:1}
+.jr .ainfo b{overflow-wrap:anywhere}
+.jr .ainfo small{color:var(--mute)}
+.jr .ainfo small.warn{color:#c62828;font-weight:600}
+.jr .aacts{display:flex;gap:6px;flex:none}
+.jr .arch-empty{display:grid;justify-items:center;gap:6px;padding:34px 0;color:var(--mute)}
+.jr .arch-empty svg{width:34px;height:34px}
+.jr .ctext{margin:0;line-height:1.5}
+
+@media(max-width:860px){
+  .jr{grid-template-columns:1fr}
+  .jr .side{position:static;height:auto;padding:14px;border-right:0}
+  .jr .tiles{flex-direction:row;overflow-x:auto;padding:4px 10px 10px 4px}
+  .jr .tile{flex:0 0 200px}
+  .jr .tile.on{transform:none}
+  .jr .banner{padding-top:22px}
+  .jr td.name{min-width:190px}
+  .jr .acard{flex-wrap:wrap}
+  .jr .aacts{width:100%;justify-content:flex-end}
+}
