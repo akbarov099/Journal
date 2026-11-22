@@ -1,0 +1,68 @@
+@use "@/shared/styles/tokens";
+
+.jr .state{min-height:60vh;display:grid;place-content:center;justify-items:center;gap:14px;color:var(--mute);text-align:center}
+.jr main{min-width:0;padding:0 clamp(12px,3vw,32px) 28px}
+.jr .legend{color:var(--mute);margin:14px 4px 0}
+.jr .offline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 calc(-1 * clamp(12px,3vw,32px));padding:10px clamp(12px,3vw,32px);background:#c62828;color:#fff;font-weight:600}
+.jr .offline svg{width:18px;height:18px}
+.jr .offline button{background:#fff;color:#c62828;border:0;padding:4px 12px;font-weight:700}
+
+.jr .terminal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#1b2536;color:#c7d4e5;padding:12px 15px;border-radius:12px 12px 0 0;font:12px ui-monospace,monospace}.jr .terminal-head button{display:flex;gap:6px;align-items:center;background:#29394f;color:#e2e8f0;border:1px solid #43536a;border-radius:8px;padding:7px 10px;cursor:pointer}.jr .terminal-dot{display:inline-block;width:8px;height:8px;background:#4ade80;border-radius:50%;margin-right:8px}
+.jr .terminal-body{background:#101827;color:#d5e4f5;min-height:220px;max-height:55vh;overflow:auto;padding:16px;border-radius:0 0 12px 12px;font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}.jr .terminal-line{display:flex;gap:12px;align-items:baseline;padding:5px 0;border-bottom:1px solid #ffffff12;overflow-wrap:anywhere}.jr .terminal-line time{color:#91a4ba;white-space:nowrap}.jr .terminal-arrow{color:#4ade80}.jr .terminal-empty{color:#91a4ba}.jr .terminal-note{font-size:12px;color:var(--mute);margin:12px 0 0}
+
+.jr.journal-app {
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-columns: clamp(228px, 23vw, 300px) minmax(0, 1fr);
+  min-height: 100dvh;
+}
+.jr.teacher-page { grid-template-columns: minmax(0, 1fr) }
+.jr .app-bar {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  z-index: 10;
+  top: 0;
+  min-height: 70px;
+  padding: 10px clamp(14px, 2.3vw, 30px);
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.jr .app-brand { display: flex; align-items: center; gap: 9px; min-width: 0; color: var(--navy); font: 800 18px/1 Manrope,Onest,sans-serif; white-space: nowrap; letter-spacing: -.03em }
+.jr .app-brand-mark { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border-radius: 11px; background: var(--navy); color: var(--gold); font-size: 19px }
+.jr .account { display: flex; align-items: center; gap: 7px; min-width: 0; padding-inline: 8px; font-size: 12px; font-weight: 600 }
+.jr .account-initial { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--sand); color: var(--navy); font-weight: 700 }
+.jr .account-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.jr .app-nav, .jr .journal-tools { display: flex; align-items: center; gap: 4px }
+.jr .app-nav { padding: 3px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px }
+.jr .app-nav button, .jr .journal-tools button { min-height: 38px; flex-shrink: 0; border-color: transparent; background: transparent; white-space: nowrap }
+.jr .app-nav button[aria-current] { background: var(--card); border-color: var(--line); color: var(--ink); box-shadow: 0 1px 3px #14243810; font-weight: 700 }
+.jr .app-nav button[aria-current] svg { color: #885c19 }
+.jr .journal-tools { grid-column: 3; justify-self: end; min-width: 0; max-width: 100% }
+.jr .journal-tools button { padding-inline: 8px; color: var(--mute) }
+.jr .journal-tools button:hover { background: var(--bg); color: var(--ink) }
+
+@media (max-width: tokens.$tablet) {
+  .jr.journal-app { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto minmax(0, 1fr) }
+  .jr.teacher-page { grid-template-rows: auto minmax(0, 1fr) }
+  .jr .app-bar { position: static }
+}
+
+@media (max-width: 1040px) {
+  .jr .journal-tools button span { display: none }
+}
+
+@media (max-width: tokens.$mobile) {
+  .jr .app-bar { grid-template-columns: minmax(0, 1fr) minmax(0, auto); gap: 6px 8px; min-height: 58px; padding-block: 7px }
+  .jr .journal-tools { grid-column: 2; grid-row: 1 }
+  .jr .journal-tools button { min-width: 44px; min-height: 44px; padding: 6px }
+  .jr .account { padding: 0; gap: 5px }
+  .jr .account-name { display: none }
+  .jr .app-nav { grid-column: 1 / -1 }
+  .jr .app-nav button { flex: 1; min-width: 0; min-height: 44px; padding: 5px; font-size: 13px }
+  .jr .desktop-journal { display: none }
+  .jr .terminal-line { display: grid; gap: 2px }
+  .jr .terminal-head { flex-wrap: wrap }
+}

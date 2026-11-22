@@ -1,0 +1,18 @@
+@use "@/shared/styles/tokens";
+
+.jr .days{display:flex;flex-wrap:wrap;gap:8px}
+.jr .day{position:relative;display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:99px;border:2px solid var(--line);background:#fff;color:var(--ink);font-weight:600;cursor:pointer}
+.jr .day input{position:absolute;opacity:0;pointer-events:none}
+.jr .day svg{width:15px;height:15px;stroke-width:3}
+.jr .day.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.jr .day:focus-within{outline:2px solid var(--acc);outline-offset:2px}
+.jr .swatches{display:flex;flex-wrap:wrap;gap:10px;padding-top:2px}
+.jr .sw{width:42px;height:42px;padding:0;border-radius:50%;border:3px solid #fff;color:#fff;background:hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%));box-shadow:0 0 0 1px var(--line)}
+.jr .sw.on{box-shadow:0 0 0 3px hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%))}
+.jr .sw svg{width:20px;height:20px;stroke-width:3}
+.jr .times{display:flex;align-items:center;gap:10px}
+.jr .times input{flex:0 1 170px}
+
+@media (max-width: tokens.$mobile) {
+  .jr .times input { flex: 1 1 0; width: 0 }
+}

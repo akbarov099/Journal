@@ -1,0 +1,185 @@
+@use "sass:color";
+@use "@/shared/styles/tokens";
+
+.jr.login-screen{box-sizing:border-box;display:flex;min-height:100dvh;justify-content:center;align-items:center;padding:20px;background:radial-gradient(ellipse at 12% 5%,#eadcc0,transparent 46%),var(--bg)}
+.jr .login-card{width:min(100%,420px);padding:32px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:0 16px 60px #14243818}
+.jr .login-card h1{font-size:28px}
+.jr .login-card p{margin:9px 0 22px;color:var(--mute)}
+
+.account-login { --account-wash: #{tokens.$accent-wash} }
+
+.jr.account-login {
+  box-sizing: border-box;
+  padding: clamp(16px, 5vw, 64px);
+  color: var(--ink);
+  background: radial-gradient(ellipse at 12% 5%, #eadcc0 0, transparent 46%), var(--bg);
+}
+
+.account-login-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  width: min(100%, 990px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 25px;
+  background: var(--card);
+  box-shadow: 0 28px 76px -42px #27344770;
+}
+
+.account-cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  isolation: isolate;
+  min-height: 478px;
+  padding: clamp(32px, 5vw, 64px);
+  overflow: hidden;
+  color: var(--card);
+  background: var(--navy);
+}
+
+.jr .account-cover h1 {
+  max-width: min-content;
+  color: var(--card);
+  font-size: clamp(33px, 4.3vw, 58px);
+  line-height: 1.04;
+  letter-spacing: -.056em;
+}
+
+.account-art {
+  position: absolute;
+  right: -27px;
+  bottom: -155px;
+  z-index: -1;
+  width: min(91%, 440px);
+  aspect-ratio: 1.24;
+  opacity: .27;
+  pointer-events: none;
+}
+
+.account-art::before {
+  position: absolute;
+  top: 0;
+  right: 13%;
+  width: 44%;
+  aspect-ratio: 1;
+  border: 1px solid color.change(tokens.$gold, $alpha: .44);
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle at center, transparent 0 8px, color.change(tokens.$gold, $alpha: .31) 9px 10px);
+  content: "";
+}
+
+.account-sheet {
+  position: absolute;
+  inset: 21% 0 0 13%;
+  border: 1px solid #fffdf8;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #f2e4ca 0 13%, #a96b3b45 13% 13.4%, #fff8e8 13.4% 100%);
+  box-shadow: 7px 10px 0 #c98e4e, 13px 19px 0 #d5a369, 12px 30px 48px #0616268a;
+  transform: rotate(-15deg);
+}
+
+.account-sheet::before {
+  position: absolute;
+  inset: 14% 10% 5% 22%;
+  background: repeating-linear-gradient(0deg, #a07e5945 0 1px, transparent 1px 23px);
+  content: "";
+}
+
+.account-sheet-tab {
+  position: absolute;
+  top: -4px;
+  right: 15%;
+  width: 27px;
+  height: 64px;
+  background: var(--gold);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 84%, 0 100%);
+}
+
+.jr.account-login .login-card {
+  display: grid;
+  align-content: center;
+  gap: 23px;
+  width: auto;
+  min-width: 0;
+  padding: clamp(24px, 5vw, 68px);
+  border: 0;
+  border-radius: 0;
+  background: var(--card);
+  box-shadow: none;
+}
+
+.jr.account-login .login-card h2 {
+  color: var(--ink);
+  font-size: clamp(26px, 3vw, 39px);
+  line-height: 1.1;
+  letter-spacing: -.05em;
+}
+
+.jr.account-login .login-card form { display: grid; gap: 16px }
+.jr.account-login .account-field { display: grid; gap: 7px }
+.jr.account-login .login-card label { margin: 0; color: var(--ink); font-size: 13px; font-weight: 700 }
+
+.jr.account-login .login-card input:not([type="checkbox"]) {
+  width: 100%;
+  min-width: 0;
+  height: 49px;
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
+  background: #fffefa;
+  font-size: 16px;
+}
+
+.jr.account-login .login-card input[aria-invalid="true"] { border-color: #b3433d }
+.jr.account-login .login-card input:focus { border-color: #ae7833; outline: 2px solid #edbc7555; outline-offset: 1px }
+.jr.account-login .login-card .phone-error { margin: 0; text-align: left; color: #971e20 }
+.jr.account-login .password-field { position: relative }
+.jr.account-login .password-field input:not([type="checkbox"]) { padding-right: 53px }
+
+.jr.account-login .password-field button {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  color: var(--mute);
+  background: transparent;
+}
+
+.jr.account-login .password-field button:hover { background: var(--account-wash) }
+
+.jr.account-login .login-submit {
+  justify-content: space-between;
+  width: 100%;
+  min-height: 50px;
+  margin: 3px 0 0;
+  border: 1px solid var(--navy);
+  border-radius: 10px;
+  color: var(--card);
+  background: var(--navy);
+  font-weight: 750;
+}
+
+.jr.account-login .login-submit:hover:enabled { background: #223b51 }
+.jr.account-login .login-submit svg { color: var(--gold) }
+
+
+@media (max-width: 685px) {
+  .account-login-layout { grid-template-columns: minmax(0, 1fr); max-width: 460px; border-radius: 19px }
+  .account-cover { min-height: 0; gap: 12px; padding: 20px 23px 23px }
+  .jr .account-cover h1 { max-width: 74%; font-size: clamp(24px, 5vw, 31px) }
+  .account-art { right: -36px; bottom: -69px; width: 170px }
+  .account-sheet-tab { width: 13px; height: 34px }
+  .jr.account-login .login-card { gap: 16px; padding: 23px }
+}
+
+@media (max-width: tokens.$mobile) {
+  .jr .login-card { padding: 18px }
+  .jr .login-card input { font-size: 16px }
+}

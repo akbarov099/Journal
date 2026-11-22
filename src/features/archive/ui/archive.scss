@@ -1,0 +1,27 @@
+@use "@/shared/styles/tokens";
+
+.jr .arch-top{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+.jr .tabs{display:flex;gap:6px}
+.jr .tabs button{border-radius:99px}
+.jr .tabs button.on{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:700}
+.jr .arch-list{display:grid;gap:10px;max-height:min(55vh,520px);overflow:auto;padding:2px}
+.jr .acard{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.jr .adot{flex:none;width:14px;height:44px;border-radius:99px;background:hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%))}
+.jr .acard .av{margin:0;flex:none}
+.jr .ainfo{display:grid;gap:2px;min-width:0;flex:1}
+.jr .ainfo b{overflow-wrap:anywhere}
+.jr .ainfo small{color:var(--mute)}
+.jr .ainfo small.warn{color:#c62828;font-weight:600}
+.jr .aacts{display:flex;gap:6px;flex:none}
+.jr .arch-empty{display:grid;justify-items:center;gap:6px;padding:34px 0;color:var(--mute)}
+.jr .arch-empty svg{width:34px;height:34px}
+.jr .archive-restricted { color: var(--mute); font-weight: 600 }
+
+@media (max-width: tokens.$tablet) {
+  .jr .acard{flex-wrap:wrap}
+  .jr .aacts{width:100%;justify-content:flex-end}
+}
+
+@media (max-width: tokens.$mobile) {
+  .jr .arch-top button, .jr .aacts button { min-height: 44px }
+}

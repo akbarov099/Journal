@@ -1,0 +1,23 @@
+$navy: #17283f;
+$gold: #c9aa68;
+$canvas: #f6f3ec;
+$paper: #fffdf8;
+$ink: #142438;
+$muted: #526173;
+$line: #ded8cc;
+$sand: #f8eacf;
+$accent-wash: #f6ecdc;
+
+$tablet: 860px;
+$mobile: 650px;
+
+@mixin theme {
+  --navy: #{$navy};
+  --gold: #{$gold};
+  --bg: #{$canvas};
+  --card: #{$paper};
+  --ink: #{$ink};
+  --mute: #{$muted};
+  --line: #{$line};
+  --sand: #{$sand};
+}

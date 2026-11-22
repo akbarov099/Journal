@@ -1,0 +1,23 @@
+.jr .journal-destination { scroll-margin-top: 84px }
+.jr .journal-hero-actions .excel-export { color: #24533b; border-color: #ccddd1; background: #eef5ee }
+.jr .journal-hero-actions .excel-export:hover { background: #e4f0e6 }
+
+.jr .excel-sync { display: grid; gap: 13px; color: var(--ink) }
+.jr .excel-sync-overview {
+  display: flex; align-items: center; gap: 10px; padding: 11px 13px;
+  border-radius: 11px; background: var(--sand); overflow-wrap: anywhere;
+}
+.jr .excel-sync-overview > svg { flex: none; width: 20px; height: 20px }
+.jr .excel-sync-overview small { display: block; color: var(--mute) }
+.jr .excel-copy { display: grid; grid-template-columns: minmax(0, 1fr) 44px; align-items: end; gap: 5px 7px }
+.jr .excel-copy button { height: 44px; padding: 0 }
+.jr .excel-copy input { height: 44px; font-size: 16px }
+.jr .excel-copy small { grid-column: 1/-1; color: var(--mute) }
+.jr .excel-sync p, .jr .excel-sync ol { margin: 0 }
+.jr .excel-sync ol { display: grid; gap: 7px; padding-left: 20px; color: var(--mute) }
+.jr .excel-sync ol b { color: var(--ink) }
+.jr .excel-sync-actions button { min-height: 44px }
+
+@media (max-width: 650px) {
+  .jr .journal-destination { scroll-margin-top: 10px }
+}

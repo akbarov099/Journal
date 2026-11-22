@@ -1,0 +1,80 @@
+@use "fonts";
+@use "@/shared/styles/tokens";
+@use "@/shared/ui/styles/dialogs";
+@use "@/shared/ui/styles/forms";
+@use "@/shared/ui/styles/notifications";
+
+@property --h{syntax:"<number>";inherits:true;initial-value:199}
+@property --s{syntax:"<number>";inherits:true;initial-value:1}
+@property --l{syntax:"<number>";inherits:true;initial-value:37}
+
+
+.jr {
+  @include tokens.theme;
+
+  --soft: hsl(var(--h) calc(45% * var(--s)) 93%);
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--bg);
+  color-scheme: light;
+  font: 14px/1.4 Onest, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+  transition: --h .6s ease, --s .6s ease, --l .6s ease;
+
+  &, .modal {
+    --acc: hsl(var(--h) calc(95% * var(--s)) calc(var(--l) * 1%));
+  }
+
+  * { box-sizing: border-box }
+  h1, h2, h3 { font-family: Manrope, Onest, system-ui, sans-serif; margin: 0 }
+  :focus-visible { outline: 2px solid var(--acc); outline-offset: 2px }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 13px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--ink);
+    background: var(--card);
+    font: inherit;
+    cursor: pointer;
+
+    svg { flex: none; width: 17px; height: 17px }
+    &:disabled { opacity: .45; cursor: default }
+  }
+
+  input:not([type="checkbox"]), select {
+    min-width: 0;
+    padding: 9px 11px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--ink);
+    background: var(--card);
+    font: inherit;
+  }
+
+  .primary {
+    border-color: var(--navy);
+    color: #fff;
+    background: var(--navy);
+    font-weight: 700;
+
+    &:not(:disabled):hover { filter: brightness(1.13) }
+  }
+
+  .danger { border-color: #c62828; color: #fff; background: #c62828; font-weight: 700 }
+  button.icon-danger { border-color: hsl(0 60% 85%); color: #c62828 }
+  .av { width: 36px; height: 36px; display: inline-grid; place-items: center; margin-right: 10px; border-radius: 50%; color: var(--ink); background: var(--soft); font-size: 12px; font-weight: 700; vertical-align: middle }
+  .login-error { padding: 10px; border: 1px solid #fecaca; border-radius: 9px; color: #a52327; background: #fff0f0; font-size: 13px }
+
+  @media (max-width: tokens.$tablet) { grid-template-columns: 1fr }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jr, .jr * { transition: none !important }
+}

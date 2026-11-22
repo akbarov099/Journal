@@ -1,0 +1,53 @@
+@use "@/shared/styles/tokens";
+
+.jr .side{background:#eee9df;color:var(--ink);border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:16px;position:sticky;top:70px;height:calc(100dvh - 70px);overflow:auto;scrollbar-width:thin}
+.jr .side h1{font-size:19px;font-weight:800;letter-spacing:-.025em}
+.jr .search{position:relative}
+.jr .search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--mute);pointer-events:none}
+.jr .find{width:100%;padding-left:38px!important;min-height:42px}
+.jr .tiles{display:flex;flex-direction:column;gap:8px}
+.jr .tile{display:flex;align-items:center;gap:10px;text-align:left;padding:11px 10px;border:1px solid transparent;border-left:3px solid transparent;border-radius:11px;color:var(--ink);background:transparent;transition:background-color .15s,border-color .15s}
+.jr .tile:hover{background:#f8f5ee}
+.jr .tile.on{background:var(--card);border-color:var(--line);border-left-color:var(--acc);box-shadow:0 2px 7px #14243809}
+.jr .ring{flex:none;width:41px;height:41px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--acc) calc(var(--p) * 1%),#e0d9ca 0)}
+.jr .ring b{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--ink);font-size:10px;font-weight:700}
+.jr .tt{display:grid;gap:3px;min-width:0}
+.jr .tn{font:800 14px Manrope,Onest,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jr .tw{display:flex;gap:4px}
+.jr .tw i{font-style:normal;font-size:10px;font-weight:600;padding:1px 5px;border-radius:4px;background:#fffdf8;color:var(--mute)}
+.jr .tile.on .tw i{background:var(--soft)}
+.jr .tm{font-size:11px;color:var(--mute)}
+.jr .side .primary{justify-content:flex-start;background:var(--navy);border-color:var(--navy);color:white;padding:10px 12px}
+.jr .side .primary svg{color:var(--gold)}
+.jr .archive-btn{justify-content:flex-start;margin-top:auto}
+.jr .badge{margin-left:auto;min-width:22px;padding:1px 7px;border-radius:99px;background:var(--acc);color:#fff;font-size:12px;font-weight:700;text-align:center}
+.jr .side-content, .jr .side-actions { display: grid; min-width: 0; gap: 12px }
+.jr .side-toggle { display: none }
+.jr .side-heading { display: flex; align-items: center; justify-content: space-between }
+.jr .side-heading small, .jr .side-toggle small { background: var(--sand); color: var(--ink); border-radius: 8px; padding: 3px 8px; font: 700 11px Onest,system-ui,sans-serif }
+.jr .archive-btn { margin-top: 0 }
+.jr .tile { width: 100%; justify-content: flex-start }
+.jr .tw { flex-wrap: wrap }
+.jr .tile-owner { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: var(--mute) }
+
+@media (max-width: tokens.$tablet) {
+  .jr .side{position:static;height:auto;padding:14px;border-right:0}
+  .jr .tiles{flex-direction:row;overflow-x:auto;padding:4px 10px 10px 4px}
+  .jr .tile{flex:0 0 200px}
+  .jr .side { height: auto; gap: 10px; border-bottom: 1px solid var(--line) }
+  .jr .side-actions { display: flex; flex-wrap: wrap }
+  .jr .side .primary { padding: 8px 13px }
+}
+
+@media (max-width: tokens.$mobile) {
+  .jr .side { padding: 6px 12px 8px }
+  .jr .side h1 { font-size: inherit; letter-spacing: 0 }
+  .jr .side-heading { padding: 8px 0; font-size: 15px }
+  .jr .side-heading.with-toggle { display: none }
+  .jr .side-toggle { display: flex; width: 100%; justify-content: flex-start; min-height: 44px; border-color: transparent; background: transparent; padding: 6px 2px; font-weight: 700 }
+  .jr .side-toggle svg { margin-left: auto }
+  .jr .side-toggle[aria-expanded="true"] svg { transform: rotate(180deg) }
+  .jr .side-content.collapsed { display: none }
+  .jr .side-actions button { min-height: 44px }
+  .jr .tile { flex-basis: 180px }
+}
